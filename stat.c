@@ -2,6 +2,18 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+/**
+ * Get the size of a file.
+ * @return The filesize, or 0 if the file does not exist.
+ */
+size_t getFilesize(const char* filename) {
+    struct stat st;
+    if(stat(filename, &st) != 0) {
+        return 0;
+    }
+    return st.st_size;   
+}
+
 int main(int argc, char const *argv[])
 {
     char *filename = argv[1];
